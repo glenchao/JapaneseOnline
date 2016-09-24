@@ -9,11 +9,13 @@
     "firebase": "^3.4.0",
     "moment": "2.14.1",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-addons-shallow-compare": "^15.3.2",
     "react-bootstrap": "^0.30.3",
-    "react-dates": "^3.0.0",
     "react-dom": "^15.3.2",
+    "react-infinite-calendar": "1.1.18",
     "react-router": "^2.8.1",
+    "react-virtualized": "^8.0.9",
     "shortid": "^2.2.6"
   },
   "scripts": {
