@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 
+// initialize database
+import './stores/init';
+// import components
 import './index.css';
 import App from './App';
 import Schedule from './pages/schedule';
