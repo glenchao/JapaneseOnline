@@ -19,22 +19,25 @@ class Signup extends Component {
         name: '',
         channel: 'google',
         other: '',
+		type: 'student',
+		lessons: [],
+		id: '',
     }
   }
-   handleChange (label) {
+   handleChange = (label) => {
         return function (e) {
             let state = {};
             state[label] = e.target.value;
             this.setState(state);
         }.bind(this);
     }
-  getValidationState(label) {
+  getValidationState = (label) => {
     const length = this.state["email"].length;
     if (length > 5) return 'success';
     else if (length > 3) return 'warning';
     else if (length > 0) return 'error';
   }
-  onSubmit(e) {
+  onSubmit = (e) => {
       e.preventDefault();
 	  console.log(this.state);
       UserStore.add(this.state);
