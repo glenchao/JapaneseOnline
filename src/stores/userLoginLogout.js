@@ -9,8 +9,18 @@ import firebase from 'firebase';
         // ...
         });
     }
+    function logoutFirebase () {
+        return firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            alert("You have successfully logged out!");
+        }, function(error) {
+            // An error happened.
+            console.log(error);
+        });
+    }
 
 module.exports = {
-    loginFirebase: loginFirebase
+    loginFirebase: loginFirebase,
+    logoutFirebase: logoutFirebase,
 };
 // export default UserSignIn;

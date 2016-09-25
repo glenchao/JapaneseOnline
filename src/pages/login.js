@@ -4,7 +4,7 @@ import {
     FormGroup, ControlLabel, FormControl, Button
 } from 'react-bootstrap';
 import { generate } from 'shortid';
-import UserLogin from '../stores/userLogin';
+import UserLogin from '../stores/userLoginLogout';
 
 class Login extends Component {
     constructor(props) {
