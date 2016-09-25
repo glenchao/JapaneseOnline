@@ -52,6 +52,7 @@ class Schedule extends Component {
             height: size === "xs" ? ScreenUtil.height() - navbarHeight - calendarTotalHeight : calendarTotalHeight,
             overflow: "auto",
         };
+        console.log("render");
         return (
             <Grid style={size === "xs" ? style.collapse : {}}>
             <Row><Col xs={12} xsHidden>
