@@ -8,12 +8,23 @@ class UserStore {
         this.path = "/user";
         this.dbRef = db.ref(this.path);
     }
-    add = (user) => {
-        if (!user) { return this.noOpt; }
-        if (!user.id) {
-            user.id = this.dbRef.push().key;
-        }
-        return this.dbRef.child(user.id).update(data);
+
+    add = (userData) => {
+        let email = userData.email;
+        let password = userData.phone;
+        if (!userData) { return this.noOpt; }
+        
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+            userData.id = user.uid;
+            return this.dbRef.child(user.uid).update(userData);
+        })
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
     }
 
     remove = (userId) => {
@@ -22,4 +33,4 @@ class UserStore {
 
 }
 
-export default UserStore();
+export default new UserStore();
