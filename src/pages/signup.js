@@ -3,6 +3,7 @@ import { Grid, Row, Col,
     FormGroup, ControlLabel, FormControl, Button 
 } from 'react-bootstrap';
 import { generate } from 'shortid';
+import UserStore from '../stores/userStore';
 
 class Signup extends Component {
   constructor(props) {
@@ -16,27 +17,30 @@ class Signup extends Component {
         email: '',
         phone: '',
         name: '',
-        channel: '',
+        channel: 'google',
         other: '',
+		type: 'student',
+		lessons: [],
+		id: '',
     }
   }
-   handleChange (label) {
+   handleChange = (label) => {
         return function (e) {
             let state = {};
             state[label] = e.target.value;
             this.setState(state);
         }.bind(this);
     }
-  getValidationState(label) {
+  getValidationState = (label) => {
     const length = this.state["email"].length;
     if (length > 5) return 'success';
     else if (length > 3) return 'warning';
     else if (length > 0) return 'error';
   }
-  onSubmit(e) {
+  onSubmit = (e) => {
       e.preventDefault();
-      alert(this.state.email);
-
+	  console.log(this.state);
+      UserStore.add(this.state);
   }
   render() {
     return (
@@ -51,8 +55,7 @@ class Signup extends Component {
                 <form onSubmit={this.onSubmit.bind(this)}>
                         <FormGroup 
                             controlId={this.emailId} 
-                            validationState={this.getValidationState()}
-                        >
+                            validationState={this.getValidationState()}>
                             <ControlLabel>Email</ControlLabel>
                             <FormControl
                             type="text"
@@ -63,15 +66,13 @@ class Signup extends Component {
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup 
-                            controlId={this.phoneId}
-                        >
+                            controlId={this.phoneId}>
                             <ControlLabel>Phone</ControlLabel>
                             <FormControl
                                 type="number"
                                 placeholder="Phone Number"
                                 value={this.state.phone}
-                                onChange={this.handleChange('phone')}
-                            />
+                                onChange={this.handleChange('phone')}/>
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup controlId={this.nameId}>
@@ -80,18 +81,16 @@ class Signup extends Component {
                                 type="text"
                                 placeholder="Enter Your Name"
                                 value={this.state.name}
-                                onChange={this.handleChange('name')}
-                            />
+                                onChange={this.handleChange('name')}/>
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup controlId={this.channelId}>
                             <ControlLabel>Channel</ControlLabel>
                             <FormControl 
-                                componentClass="select" 
+                                componentClass="select"
                                 placeholder="please select"
                                 value={this.state.channel}
-                                onChange={this.handleChange('channel')}
-                            >
+                                onChange={this.handleChange('channel')}>
                                 <option value="google">Google</option>
                                 <option value="facebook">Facebook</option>
                             </FormControl>
@@ -100,14 +99,12 @@ class Signup extends Component {
                         <FormGroup 
                             controlId={this.otherId}
                             value={this.state.other}
-                            onChange={this.handleChange('other')}
-                        >
+                            onChange={this.handleChange('other')}>
                             <ControlLabel>Other</ControlLabel>
                             <FormControl
                                 componentClass="textarea"
                                 type="text"
-                                placeholder="What other channels did you hear about us?"
-                            />
+                                placeholder="What other channels did you hear about us?"/>
                             <FormControl.Feedback />
                         </FormGroup>
                         <Button type="submit">Submit</Button>
