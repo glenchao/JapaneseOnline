@@ -16,7 +16,9 @@ class Login extends Component {
         e.preventDefault();
         let email = e.target.email.value;
         let password = e.target.password.value;
-        UserLogin.loginFirebase(email, password);
+        UserLogin.loginFirebase(email, password).then((user) => {
+            this.context.router.push("/schedule");
+        });
     }
     render() {
         return (
@@ -55,5 +57,11 @@ class Login extends Component {
         );
     }
 }
+
+// add this whenever you need this.context.router
+// to programmatically navigate with react router
+Login.contextTypes = {
+    router: React.PropTypes.object
+};
 
 export default Login;
