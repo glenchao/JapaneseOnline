@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { generate } from 'shortid';
 import UserLogin from '../stores/userLoginLogout';
+import firebase from 'firebase';
 
 class Login extends Component {
     constructor(props) {
@@ -17,7 +18,12 @@ class Login extends Component {
         let email = e.target.email.value;
         let password = e.target.password.value;
         UserLogin.loginFirebase(email, password).then((user) => {
-            this.context.router.push("/schedule");
+            firebase.database().ref('user/'+user.uid).once("value").then((snapshot) => {
+                let type = snapshot.val().type;
+                console.log(type);
+                let link = type === 'student' ? '/schedule/student' : '/schedule';
+                this.context.router.push(link);
+            });
         });
     }
     render() {

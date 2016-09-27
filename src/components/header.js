@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserLogin from '../stores/userLoginLogout';
+import firebase from 'firebase';
 import {
     Navbar, Nav, NavItem
 } from 'react-bootstrap';
@@ -7,6 +8,17 @@ import {
 class Header extends Component {
     handleSelect = (eventKey) => {
         this.context.router.push(eventKey);
+    }
+    checkType = () => {
+        let user = firebase.auth().currentUser;
+        return firebase.database().ref('user/'+user.uid+'/type').once("value").then((snapshot) => {
+            let type = snapshot.val();
+            console.log(type);
+            this.eventKey = type === 'student' ? '/schedule/student' : '/schedule';
+            console.log(this.eventKey);
+        });
+        // this.eventKey = UserLogin.checkAccountType();
+        // console.log(this.eventKey);
     }
     logout = (eventKey) => {
         UserLogin.logoutFirebase().then((user) => {
@@ -24,7 +36,7 @@ class Header extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleSelect}>
-                        <NavItem eventKey="/schedule">Schedule</NavItem>
+                        <NavItem eventKey={this.eventKey} onSelect={this.checkType}>Schedule</NavItem>
                         <NavItem eventKey="/info">Info</NavItem>
                         <NavItem eventKey="/login" onSelect={this.logout}> Log Out</NavItem>
                     </Nav>

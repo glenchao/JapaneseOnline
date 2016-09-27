@@ -8,6 +8,7 @@ import './stores/init';
 import './index.css';
 import App from './App';
 import Schedule from './pages/schedule';
+import ScheduleStudent from './pages/scheduleStudent';
 import Info from './pages/info';
 import LoginMain from './pages/loginMain';
 import Login from './pages/login';
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
             <IndexRoute component={Schedule} />
             <Route path="/schedule" component={Schedule} />
+            <Route path="/schedule/student" component={ScheduleStudent} />
             <Route path="/info" component={Info} />
         </Route>
     </Router>,
