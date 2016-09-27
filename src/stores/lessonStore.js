@@ -9,7 +9,8 @@ class UserStore {
         this.dbRef = db.ref(this.path);
     }
     get = () => {
-        return this.dbRef.once("value").then((snapshot) => {
+        let userId = firebase.auth().currentUser.uid;
+        return this.dbRef.orderByChild("teacherId").equalTo(userId).once("value").then((snapshot) => {
             let lessons = [];
             snapshot.forEach((lesson) => {
                 lessons.push(lesson.val());
@@ -20,7 +21,10 @@ class UserStore {
     add = (lessonData) => {
         if (!lessonData) { return this.noOpt; }
         let pushKey = this.dbRef.push().key;
+        let user = firebase.auth().currentUser;
         lessonData.id = pushKey;
+        lessonData.teacherId = user.uid;
+        lessonData.teacherName = user.email;
         return this.dbRef.child(lessonData.id).update(lessonData);
     }
 
