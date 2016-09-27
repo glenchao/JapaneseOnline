@@ -12,23 +12,25 @@ let style = {
     }
 }
 class TimeList extends React.Component {
-    constructor(props) {
-        super(props);
-        let startTime = this.props.startTime || 0;
-        let endTime = this.props.endTime || 23;
-        this.times = [];
-        for (let i = startTime; i <= endTime; i++) {
-            this.times.push(<TimeListItem key={i} onClick={this.onClick} time={i} />);
-        }
-    }
     onClick = (time) => {
         if (this.props.onClick) {
             this.props.onClick(time);
         }
     }
     render() {
+        let startTime = this.props.startTime || 0;
+        let endTime = this.props.endTime || 23;
+        let lessons = this.props.lessons || [];
+        lessons = lessons.map((lesson) => {
+            return lesson.time;
+        });
+        this.times = [];
+        for (let i = startTime; i <= endTime; i++) {
+            let isSelected = lessons.indexOf(i) !== -1;
+            this.times.push(<TimeListItem key={i} isSelected={isSelected} onClick={this.onClick} time={i} />);
+        }
         return (
-            <ListGroup {...this.props} style={style.list}>{this.times}</ListGroup>
+            <ListGroup style={style.list}>{this.times}</ListGroup>
         );
     }
 }
@@ -42,8 +44,9 @@ class TimeListItem extends React.Component {
     render() {
         let val = (this.props.time % 12) || 12;
         let suffix = this.props.time >= 12 ? "pm" : "am";
+        let bgColor = this.props.isSelected ? "success" : null;
         return (
-            <ListGroupItem style={style.listItem} onClick={this.onClick}>{val + suffix}</ListGroupItem>
+            <ListGroupItem style={style.listItem} bsStyle={bgColor} onClick={this.onClick}>{val + suffix}</ListGroupItem>
         )
     }
 }

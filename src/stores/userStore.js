@@ -22,9 +22,16 @@ class UserStore {
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
+            console.log(errorCode);
             var errorMessage = error.message;
+            console.log(errorMessage);
             // ...
         });
+    }
+
+    updateSchedule = (userSchedule) => {
+        var user = firebase.auth().currentUser;
+        this.dbRef.child(user.uid).child("lessons").push(userSchedule);
     }
 
     remove = (userId) => {
