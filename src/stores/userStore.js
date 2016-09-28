@@ -7,8 +7,24 @@ class UserStore {
         this.noOpt = new Promise((resolve, reject) => { resolve(); });
         this.path = "/user";
         this.dbRef = db.ref(this.path);
+        // some user data to initialize
+        this.uid = "";
+        this.accountType = "";
+        this.email = "";
+        this.name = "";
+        this.scheduleLink = "";
     }
-
+    init = (uid) => {
+        this.uid = uid;
+        console.log("userStore: " + uid); 
+        return this.dbRef.child(uid).once("value").then((snapshot) => {
+            this.accountType = snapshot.val().type;
+            this.email = snapshot.val().email;
+            this.name = snapshot.val().name;
+            this.scheduleLink = this.accountType === "student"? "/schedule/student" : "/schedule";
+        });
+    }
+    
     add = (userData) => {
         let email = userData.email;
         let password = userData.phone;

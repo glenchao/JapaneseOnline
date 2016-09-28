@@ -13,7 +13,9 @@ import Info from './pages/info';
 import LoginMain from './pages/loginMain';
 import Login from './pages/login';
 import Signup from './pages/signup';
-
+import Book from './pages/book';
+import Teacher_1 from './pages/teacher_1';
+import Teacher_2 from './pages/teacher_2';
 
 ReactDOM.render(
     <Router history={browserHistory}>
@@ -27,6 +29,9 @@ ReactDOM.render(
             <Route path="/schedule" component={Schedule} />
             <Route path="/schedule/student" component={ScheduleStudent} />
             <Route path="/info" component={Info} />
+            <Route path="/book" component={Book}>
+                <Route path=":teacherId" component={Teacher_1} />
+            </Route>
         </Route>
     </Router>,
     document.getElementById('root')

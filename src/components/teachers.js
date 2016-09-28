@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import UserLogin from '../stores/userLoginLogout';
-import UserStore from '../stores/userStore';
+import firebase from 'firebase';
 import {
     Navbar, Nav, NavItem
 } from 'react-bootstrap';
 
-class Header extends Component {
+class Teachers extends Component {
     handleSelect = (eventKey) => {
         this.context.router.push(eventKey);
+    }
+    checkType = () => {
+        let user = firebase.auth().currentUser;
+        return firebase.database().ref('user/'+user.uid+'/type').once("value").then((snapshot) => {
+            let type = snapshot.val();
+            console.log(type);
+            this.eventKey = type === 'student' ? '/schedule/student' : '/schedule';
+            console.log(this.eventKey);
+        });
+        // this.eventKey = UserLogin.checkAccountType();
+        // console.log(this.eventKey);
     }
     logout = (eventKey) => {
         UserLogin.logoutFirebase().then((user) => {
@@ -15,13 +25,6 @@ class Header extends Component {
         });
     }
     render() {
-        let book = null;
-        if (UserStore.accountType === 'teacher') {
-            console.log()
-            book = null;
-        } else {
-            book = (<NavItem eventKey="/book">Book</NavItem>);
-        }
         return (
             <Navbar inverse>
                 <Navbar.Header>
@@ -32,9 +35,9 @@ class Header extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleSelect}>
-                        <NavItem eventKey={UserStore.scheduleLink}>Schedule</NavItem>
+                        <NavItem eventKey={this.eventKey} onSelect={this.checkType}>Schedule</NavItem>
                         <NavItem eventKey="/info">Info</NavItem>
-                        {book}
+                        <NavItem eventKey="/book">Book</NavItem>
                         <NavItem eventKey="/login" onSelect={this.logout}> Log Out</NavItem>
                     </Nav>
                 </Navbar.Collapse>
@@ -49,4 +52,4 @@ Header.contextTypes = {
     router: React.PropTypes.object
 };
 
-export default Header;
+export default Teachers;

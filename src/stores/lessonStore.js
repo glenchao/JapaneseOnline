@@ -2,14 +2,21 @@ import firebase from 'firebase';
 
 let db = firebase.database();
 
-class UserStore {
+class LessonStore {
     constructor() {
         this.noOpt = new Promise((resolve, reject) => { resolve(); });
         this.path = "/lessons";
         this.dbRef = db.ref(this.path);
+        this.lessons = []; //added by Glen for temp memory purpose, may not use this method
     }
-    get = () => {
-        let userId = firebase.auth().currentUser.uid;
+    get = (userId) => {
+        if (!userId) {
+            userId = firebase.auth().currentUser.uid;
+            console.log("LessonStore userId argument is not given");
+        }
+        else {
+            console.log("LessonStore userId argument exists: " + userId);
+        }
         return this.dbRef.orderByChild("teacherId").equalTo(userId).once("value").then((snapshot) => {
             let lessons = [];
             snapshot.forEach((lesson) => {
@@ -18,6 +25,15 @@ class UserStore {
             return lessons;
         });
     }
+    // getAllTeacherLessons = () => {
+    //     return db.ref('/user').orderByChild("type").equalTo("teacher").once("value").then((snapshot) => {
+    //         let allLessons = [];
+    //         // snapshot.forEach((lesson) => {
+    //         //     lessons.push(lesson.val());
+    //         // });
+    //         // return lessons;
+    //     });
+    // }
     add = (lessonData) => {
         if (!lessonData) { return this.noOpt; }
         let pushKey = this.dbRef.push().key;
@@ -27,11 +43,9 @@ class UserStore {
         lessonData.teacherName = user.email;
         return this.dbRef.child(lessonData.id).update(lessonData);
     }
-
     remove = (lessonId) => {
         return this.dbRef.child(lessonId).remove();
     }
-
 }
 
-export default new UserStore();
+export default new LessonStore();
