@@ -21,6 +21,7 @@ class LessonStore {
             let lessons = [];
             snapshot.forEach((lesson) => {
                 lessons.push(lesson.val());
+                console.log("lessonStore: " + lesson.val());
             });
             return lessons;
         });

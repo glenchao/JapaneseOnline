@@ -11,28 +11,30 @@ class Book extends Component {
         super(props);
         this.state = {
             allLessons: [],
+            test: '',
         };
         console.log("Book.js Test");
         LessonStore.get("Pq2kYapP4hUg2bym9IZLMotVpKj2").then((lessons) => {
-            this.setState({ allLessons: lessons.date })
-            console.log("Teacher 0: " + this.allLessons);
+            this.state.allLessons = lessons;
+            this.state.test = this.state.allLessons[0].date;
+            this.setState(this.state);
         });
+        // this.test = this.state.allLessons[0].date;
+        // console.log("Teacher 0 Date: " + this.state.allLessons[0].date);
         // LessonStore.get("ximxOPFDsWZE59ijj8gMApOjt7d2").then((lessons) => {
         //     this.state.allLessons[1] = lessons;
         //     this.setState(this.state);
         //     console.log("Teacher 1: " + this.allLessons[1]);
         // });
-        this.lol = 0;
     }
     render() {
-        let x = this.lol;
         return (
             <div>
                 <Pager>
                     <Pager.Item previous href="#">&larr; Prev Page</Pager.Item>
                     <Pager.Item next href="#">Next Page &rarr;</Pager.Item>
                 </Pager>
-                <Teacher content={this.state.allLessons} />
+                <Teacher content={this.state.test} />
             </div>
         );
     }
