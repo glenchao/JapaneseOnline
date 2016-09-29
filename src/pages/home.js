@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import HomeHeader from '../components/homeHeader';
 import backgroundImageOne from '../images/kyoto_1.jpg';
 import backgroundImageTwo from '../images/kyoto_2.jpg';
+import teachingBackground from '../images/teaching.png';
 import { 
-    Grid, Row,
+    Grid, Row, Col,
     Button,
-    Carousel
+    Carousel, Jumbotron
 } from 'react-bootstrap';
 
 let style = {
@@ -19,6 +20,15 @@ let style = {
     button: {
         backgroundColor: "#ee4b28",
         border: "none",
+        margin: "0 auto",
+    },
+    sectionTwo: {
+        color: "black",
+        textAlign: "center",
+        bg: {
+            backgroundImage: 'url(' + teachingBackground + ')',
+            backgroundSize: "cover",
+        },
     },
 }
 
@@ -27,7 +37,9 @@ class Home extends Component {
         return (
             <Grid>
                 <Row>
-                    <HomeHeader />
+                    <Col>
+                        <HomeHeader />
+                    </Col>
                 </Row>
                 <Row>
                     <Carousel>
@@ -50,6 +62,17 @@ class Home extends Component {
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
+                </Row>
+                <Row>
+                    <Col>
+                        <Jumbotron style={style.sectionTwo.bg}>
+                            <div style={style.sectionTwo}>
+                                <h1>Online Japanese Learning</h1>
+                                <p>Anytime, Anywhere, On Your Phone</p>
+                                <p><Button style={style.button}>What's This?</Button></p>
+                            </div>
+                        </Jumbotron>
+                    </Col>
                 </Row>
             </Grid>
         );
