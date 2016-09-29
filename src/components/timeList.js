@@ -12,9 +12,9 @@ let style = {
     }
 }
 class TimeList extends React.Component {
-    onClick = (time) => {
+    onClick = (time, isSelected) => {
         if (this.props.onClick) {
-            this.props.onClick(time);
+            this.props.onClick(time, isSelected);
         }
     }
     render() {
@@ -38,7 +38,7 @@ class TimeList extends React.Component {
 class TimeListItem extends React.Component {
     onClick = () => {
         if (this.props.onClick) {
-            this.props.onClick(this.props.time);
+            this.props.onClick(this.props.time, this.props.isSelected);
         }
     }
     render() {

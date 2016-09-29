@@ -7,7 +7,6 @@ class LessonStore {
         this.noOpt = new Promise((resolve, reject) => { resolve(); });
         this.path = "/lessons";
         this.dbRef = db.ref(this.path);
-        this.lessons = []; //added by Glen for temp memory purpose, may not use this method
     }
     get = (userId) => {
         if (!userId) {
@@ -26,15 +25,6 @@ class LessonStore {
             return lessons;
         });
     }
-    // getAllTeacherLessons = () => {
-    //     return db.ref('/user').orderByChild("type").equalTo("teacher").once("value").then((snapshot) => {
-    //         let allLessons = [];
-    //         // snapshot.forEach((lesson) => {
-    //         //     lessons.push(lesson.val());
-    //         // });
-    //         // return lessons;
-    //     });
-    // }
     add = (lessonData) => {
         if (!lessonData) { return this.noOpt; }
         let pushKey = this.dbRef.push().key;

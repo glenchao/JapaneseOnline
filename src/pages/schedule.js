@@ -98,7 +98,7 @@ class Schedule extends Component {
             lessons: this.getLessonsForDate(this.selectedDate)
         });
     }
-    onTimeClick = (time) => {
+    onTimeClick = (time, isSelected) => {
         let exists = false;
         let date = this.selectedDate.format("YYYY MM DD");
         let tempLesson = new Lesson({time: time, date: date});
