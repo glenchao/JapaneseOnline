@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LessonStore from '../stores/lessonStore';
 
 class Teacher_1 extends Component {
     render() {

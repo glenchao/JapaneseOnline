@@ -30,7 +30,7 @@ class Book extends Component {
             screenSize: ScreenUtil.getScreenSize(),
             lessons: [],
             teacher: 'Pq2kYapP4hUg2bym9IZLMotVpKj2',
-            teacherName: 'Teacher 1',
+            teacherName: 'Maya Sensei',
         };
         window.onresize = () => {
             let state = Object.assign({}, this.state, { screenSize: ScreenUtil.getScreenSize() });
@@ -69,26 +69,26 @@ class Book extends Component {
     }
     prevPageClick = () => {
         this.setState({ teacher: "Pq2kYapP4hUg2bym9IZLMotVpKj2" })
-        this.setState({ teacherName: "Teacher  1" })
+        this.setState({ teacherName: "Maya Sensei" })
         LessonStore.get("Pq2kYapP4hUg2bym9IZLMotVpKj2").then((lessons) => {
             this.allLessons = lessons;
-            console.log("Teacher 1: " + this.allLessons);
             this.setState({ lessons: this.getLessonsForDate(this.selectedDate) })
         });
     }
     nextPageClick = () => {
         this.setState({ teacher: "ximxOPFDsWZE59ijj8gMApOjt7d2" })
-        this.setState({ teacherName: "Teacher  2" })
+        this.setState({ teacherName: "Kagoii Sensei" })
         LessonStore.get("ximxOPFDsWZE59ijj8gMApOjt7d2").then((lessons) => {
             this.allLessons = lessons;
-            console.log("Teacher 2: " + this.allLessons);
             this.setState({ lessons: this.getLessonsForDate(this.selectedDate) })
         });
     }
     onTimeClick = (time, isSelected) => {
-        isSelected === true? 
-            alert("You've booked: " + this.state.teacherName + " at " + time + " o'clock") : 
+        if (isSelected) {
+            alert("You've booked: " + this.state.teacherName + " at " + time + " o'clock")
+        } else {
             alert("The teacher is not available for this time.");
+        }
     }
     render() {
         // some stupid css calculations....
@@ -102,7 +102,6 @@ class Book extends Component {
             height: size === "xs" ? ScreenUtil.height() - navbarHeight - calendarTotalHeight : calendarTotalHeight,
             overflow: "auto",
         };
-        let prev = -1;
         return (
             <div>
                 <Grid style={size === "xs" ? style.collapse : {}}>

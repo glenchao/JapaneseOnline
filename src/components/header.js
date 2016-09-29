@@ -20,20 +20,21 @@ class Header extends Component {
             console.log()
             book = null;
         } else {
-            book = (<NavItem eventKey="/book">Book</NavItem>);
+            book = (<NavItem eventKey="/admin/book">Book</NavItem>);
         }
         return (
             <Navbar inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a>Japanese Online</a>
+                        <a href="/">Home </a>
+                        <a>/ {UserStore.email}</a>
                     </Navbar.Brand>
                     <Navbar.Toggle ref="toggle" />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleSelect}>
                         <NavItem eventKey={UserStore.scheduleLink}>Schedule</NavItem>
-                        <NavItem eventKey="/info">Info</NavItem>
+                        <NavItem eventKey="/admin/info">Info</NavItem>
                         {book}
                         <NavItem eventKey="/login" onSelect={this.logout}> Log Out</NavItem>
                     </Nav>

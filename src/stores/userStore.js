@@ -21,7 +21,7 @@ class UserStore {
             this.accountType = snapshot.val().type;
             this.email = snapshot.val().email;
             this.name = snapshot.val().name;
-            this.scheduleLink = this.accountType === "student"? "/schedule/student" : "/schedule";
+            this.scheduleLink = this.accountType === "student"? "/admin/schedule/student" : "/admin/schedule";
         });
     }
     

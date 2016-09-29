@@ -4,7 +4,8 @@ class ScheduleStudent extends Component {
     render() {
         return (
             <div>
-                Schedule Student
+                <p> Schedule for Student </p>
+                <p> Your Next Lesson is: ...... </p>
             </div>
         );
     }

@@ -21,7 +21,7 @@ class Login extends Component {
             firebase.database().ref('user/'+user.uid).once("value").then((snapshot) => {
                 let type = snapshot.val().type;
                 console.log(type);
-                let link = type === 'student' ? '/schedule/student' : '/schedule';
+                let link = type === 'student' ? '/admin/schedule/student' : '/admin/schedule';
                 this.context.router.push(link);
             });
         });
