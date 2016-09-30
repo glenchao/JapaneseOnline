@@ -8,6 +8,7 @@ import './stores/init';
 import './index.css';
 import App from './App';
 import Home from './pages/home';
+import AboutUs from './pages/aboutUs';
 import Admin from './pages/admin';
 import Schedule from './pages/schedule';
 import ScheduleStudent from './pages/scheduleStudent';
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
             <IndexRoute component={Home} />
             <Route path="/home" component={Home} />
+            <Route path="/aboutUs" component={AboutUs} />
         </Route>
         <Route path="/loginMain" component={LoginMain}>
             <IndexRoute component={Login} />

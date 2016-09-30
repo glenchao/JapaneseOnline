@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem, Col } from 'react-bootstrap';
+
+let style = {
+    color: "black",
+    backgroundColor: "lightgrey",
+}
 
 class LoginNav extends Component {
     handleSelect = (eventKey) => {
@@ -7,12 +12,12 @@ class LoginNav extends Component {
     }
     render() {
         return (
-        <div>
+        <Col xs={12} xsOffset={0} sm={10} smOffset={1} md={10} mdOffset={1} lg={8} lgOffset={2}>
             <Nav bsStyle="tabs" justified onSelect={this.handleSelect}>
-                <NavItem eventKey="/login">Login</NavItem>
-                <NavItem eventKey="/signup">Sign Up</NavItem>
+                <NavItem style={style} eventKey="/login">Login</NavItem>
+                <NavItem style={style} eventKey="/signup">Sign Up</NavItem>
             </Nav>
-        </div>
+        </Col>
         );
     }
 }

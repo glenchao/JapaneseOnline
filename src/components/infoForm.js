@@ -19,19 +19,19 @@ class InfoForm extends React.Component {
             <form onChange={this.handleChange} onSubmit={this.onSubmit}>
                 <FormGroup controlId={this.ids.name}>
                     <ControlLabel>Name</ControlLabel>
-                    <FormControl type="text" name="name" value={user.name} placeholder="i.e. Jane Smith" />
+                    <FormControl type="text" name="name" value={user.name} placeholder="i.e. Jane Smith" readOnly />
                     <FormControl.Feedback />
                     <HelpBlock></HelpBlock>
                 </FormGroup>
                 <FormGroup controlId={this.ids.email}>
                     <ControlLabel>Email</ControlLabel>
-                    <FormControl type="email" name="email" value={user.email} placeholder="i.e. janesmith@email.com" />
+                    <FormControl type="email" name="email" value={user.email} placeholder="i.e. janesmith@email.com" readOnly />
                     <FormControl.Feedback />
                     <HelpBlock></HelpBlock>
                 </FormGroup>
                 <FormGroup controlId={this.ids.exp}>
                     <ControlLabel>Expierence</ControlLabel>
-                    <FormControl componentClass="textarea" name="exp" value={user.exp} placeholder="i.e. so smart" />
+                    <FormControl componentClass="textarea" name="exp" value={user.exp} placeholder="i.e. so smart" readOnly />
                     <FormControl.Feedback />
                     <HelpBlock></HelpBlock>
                 </FormGroup>

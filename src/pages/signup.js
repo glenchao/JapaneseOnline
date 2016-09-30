@@ -5,6 +5,11 @@ import { Grid, Row, Col,
 import { generate } from 'shortid';
 import UserStore from '../stores/userStore';
 
+let style = {
+    backgroundColor: "#f05f40",
+    border: "none",
+}
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +46,9 @@ class Signup extends Component {
       e.preventDefault();
 	  console.log(this.state);
       UserStore.add(this.state);
+      if (this.state.email && this.state.phone && this.state.name) {
+          alert("SUCCESS! Click on My Account!");
+      } else { alert("Please fill in information."); }
   }
   render() {
     return (
@@ -107,7 +115,7 @@ class Signup extends Component {
                                 placeholder="What other channels did you hear about us?"/>
                             <FormControl.Feedback />
                         </FormGroup>
-                        <Button type="submit">Submit</Button>
+                        <Button style={style} type="submit">Submit</Button>
                 </form>
             </Col>
         </Row>
@@ -115,5 +123,11 @@ class Signup extends Component {
     );
   }
 }
+
+// add this whenever you need this.context.router
+// to programmatically navigate with react router
+Signup.contextTypes = {
+    router: React.PropTypes.object
+};
 
 export default Signup;

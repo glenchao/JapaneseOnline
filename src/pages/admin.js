@@ -4,6 +4,7 @@ import UserStore from '../stores/userStore';
 import '../App.css';
 
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 class Admin extends Component {
     constructor(props) {
@@ -36,6 +37,8 @@ class Admin extends Component {
                         <div>
                             {this.props.children}
                         </div>
+                        <br />
+                        <Footer/>
                     </div>);
         }
         return (

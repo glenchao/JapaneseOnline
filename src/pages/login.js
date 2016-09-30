@@ -7,6 +7,11 @@ import { generate } from 'shortid';
 import UserLogin from '../stores/userLoginLogout';
 import firebase from 'firebase';
 
+let style = {
+    backgroundColor: "#f05f40",
+    border: "none",
+}
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +60,7 @@ class Login extends Component {
                                     />
                                 <FormControl.Feedback />
                             </FormGroup>
-                            <Button type="submit">Submit</Button>
+                            <Button style={style} type="submit">Submit</Button>
                         </form>
                     </Col>
                 </Row>

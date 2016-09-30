@@ -9,8 +9,8 @@ import moment from 'moment';
 import TimeList from '../components/timeList';
 import ScreenUtil from '../utilities/screen';
 
-// import teacher_1 from '../images/teacher1.jpg';
-// import teacher_2 from '../images/teacher2.jpg';
+import teacher1 from '../images/teacher1Profile.jpg';
+import teacher2 from '../images/teacher2Profile.jpg';
 let style = {
     collapse: {
         padding: "0px",
@@ -29,8 +29,9 @@ class Book extends Component {
         this.state = {
             screenSize: ScreenUtil.getScreenSize(),
             lessons: [],
-            teacher: 'Pq2kYapP4hUg2bym9IZLMotVpKj2',
+            teacher: 'o0woVBThmSgJjGa19f0CZdYf0bE3',
             teacherName: 'Maya Sensei',
+            img: teacher1,
         };
         window.onresize = () => {
             let state = Object.assign({}, this.state, { screenSize: ScreenUtil.getScreenSize() });
@@ -68,17 +69,19 @@ class Book extends Component {
         });
     }
     prevPageClick = () => {
-        this.setState({ teacher: "Pq2kYapP4hUg2bym9IZLMotVpKj2" })
+        this.setState({ teacher: "o0woVBThmSgJjGa19f0CZdYf0bE3" })
         this.setState({ teacherName: "Maya Sensei" })
-        LessonStore.get("Pq2kYapP4hUg2bym9IZLMotVpKj2").then((lessons) => {
+        this.setState({ img: teacher1 })
+        LessonStore.get("o0woVBThmSgJjGa19f0CZdYf0bE3").then((lessons) => {
             this.allLessons = lessons;
             this.setState({ lessons: this.getLessonsForDate(this.selectedDate) })
         });
     }
     nextPageClick = () => {
-        this.setState({ teacher: "ximxOPFDsWZE59ijj8gMApOjt7d2" })
+        this.setState({ teacher: "ZKvvvv0kBkZnstGLoXhBGQfJiNo2" })
         this.setState({ teacherName: "Kagoii Sensei" })
-        LessonStore.get("ximxOPFDsWZE59ijj8gMApOjt7d2").then((lessons) => {
+        this.setState({ img: teacher2 })
+        LessonStore.get("ZKvvvv0kBkZnstGLoXhBGQfJiNo2").then((lessons) => {
             this.allLessons = lessons;
             this.setState({ lessons: this.getLessonsForDate(this.selectedDate) })
         });
@@ -108,7 +111,7 @@ class Book extends Component {
                     <Row>
                         <Col xs={12}>
                             <PageHeader style={style.center}>
-                                <small> <Teacher content={this.state.teacherName} /> </small>
+                                <small> <Teacher img={this.state.img} content={this.state.teacherName} /> </small>
                             </PageHeader>
                             <Pager>
                                 <Pager.Item previous onClick={this.prevPageClick}>&larr; Prev Page</Pager.Item>
@@ -117,7 +120,7 @@ class Book extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} sm={6}>
+                        <Col xs={12} sm={6} smOffset={1}>
                             <InfiniteCalendar
                                 autoFocus={true}
                                 todayHelperRowOffset={0}
@@ -128,7 +131,7 @@ class Book extends Component {
                                 keyboardSupport={true}
                                 onSelect={this.onDateClick} />
                         </Col>
-                        <Col xs={12} sm={6} style={listStyle}>
+                        <Col xs={12} sm={3} smOffset={1} style={listStyle}>
                             <TimeList startTime={1} endTime={23} lessons={this.state.lessons} onClick={this.onTimeClick} />
                         </Col>
                     </Row>

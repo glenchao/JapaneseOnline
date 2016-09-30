@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import UserStore from '../stores/userStore';
 import {
     Navbar, Nav, NavItem
@@ -10,7 +11,7 @@ let style = {
         border: "none",
     },
     navFont: {
-        color: "#f05f40",
+        color: "black",
     },
     navToggle: {
         backgroundColor: "#ddd",
@@ -28,18 +29,19 @@ class HomeHeader extends Component {
             <Navbar style={style.nav} inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a style={style.navFont} href="/">Home </a>
+                        <Link style={style.navFont} to="/">Home </Link>
                         <a>/ {UserStore.email}</a>
                     </Navbar.Brand>
                     <Navbar.Toggle style={style.navToggle} ref="toggle" />
                 </Navbar.Header>
                 <Navbar.Collapse>
-                    <Nav onSelect={this.handleSelect}>
-                        <NavItem>Our Service</NavItem>
-                        <NavItem>Teachers</NavItem>
-                        <NavItem>Start Learning</NavItem>
-                        <NavItem>Who Are We</NavItem>
-                        <NavItem eventKey="/login">Log In / Sign Up</NavItem>
+                    <Nav style={style.navFont}>
+                        <NavItem href="#services">Our Service</NavItem>
+                        <NavItem href="#teachers">Teachers</NavItem>
+                        <NavItem onSelect={this.handleSelect} eventKey="/signup">Start Learning</NavItem>
+                        <NavItem onSelect={this.handleSelect} eventKey="/aboutUs">Who Are We</NavItem>
+                        <NavItem onSelect={this.handleSelect} eventKey="/admin">My Account</NavItem>
+                        <NavItem onSelect={this.handleSelect} eventKey="/login">Log In / Sign Up</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
