@@ -105,9 +105,13 @@ This website is built on react JS. It uses the following open source libraries a
 
 - <https://github.com/wernerchao>
 
+**Glen Chao**
+
+- <https://github.com/glenchao>
+
 
 ## Copyright and License
 
-Code and documentation copyright 2016 the Project Movie Trailer
+Code and documentation copyright 2016 Learn Japanese Online
 Authors and released under the MIT license.
 
