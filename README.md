@@ -17,9 +17,7 @@ To start using this repository
 
 >  ```> $ git clone https://github.com/wernerchao/Learn-Japanese-Online.git```
 
-Website demo:
-
-(https://project-3373896903953203314.firebaseapp.com)
+[Website demo]: https://project-3373896903953203314.firebaseapp.com
 
 ## Folder Structure
 
@@ -66,7 +64,7 @@ These are the re-usable components:
 ```
 
 ## Usage
-1. Please start out by looking at index.js for the overall linking of pages. The main functionality is on the page:
+-  Please start out by looking at index.js for the overall linking of pages. The main functionality is on the page:
 
 ```
 /admin/schedule
@@ -77,7 +75,7 @@ Teacher's schedule is then displayed on the page:
 
 /admin/book
 
-2. By default, when a user signs up on the page:
+-  By default, when a user signs up on the page:
 
 ```
 /login
@@ -85,7 +83,7 @@ Teacher's schedule is then displayed on the page:
 
 It is considered as a student account.
 
-3. This website uses Firebase as backend. Please check:
+-  This website uses Firebase as backend. Please check:
 
 ```
 src/stores/init.js
