@@ -6,9 +6,9 @@ Learn Japanese Online is a website that allows language learners to learn anytim
 - Quick Start
 - Folder Structure
 - What's Included
+- Usage
 - Dependencies
 - Creators
-- References
 - Copyright and License
 
 ## Quick Start
@@ -17,7 +17,7 @@ To start using this repository
 
 >  ```> $ git clone https://github.com/wernerchao/Learn-Japanese-Online.git```
 
-[Website demo]: https://project-3373896903953203314.firebaseapp.com
+Website [demo] (https://project-3373896903953203314.firebaseapp.com)
 
 ## Folder Structure
 
@@ -105,10 +105,6 @@ This website is built on react JS. It uses the following open source libraries a
 
 - <https://github.com/wernerchao>
 
-## References
-
-We've used the following open source library to make this project:
-(https://github.com/wernerchao/ud036_StarterCode) 
 
 ## Copyright and License
 
